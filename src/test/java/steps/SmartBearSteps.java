@@ -168,4 +168,12 @@ public class SmartBearSteps {
             Assert.assertEquals(dataTable.asList().get(i), smartBearWebOrdersPage.myOrderFirstRow.get(i).getText());
         }
     }
+
+    @Then("validate all orders are deleted from the {string}")
+    public void validateAllOrdersAreDeletedFromThe(String arg0) {
+    }
+
+    @And("validate user sees {string} Message")
+    public void validateUserSeesMessage(String arg0) {
+    }
 }
