@@ -84,6 +84,13 @@ public class SmartBearSteps {
                 Waiter.pause(2);
                 break;
 
+            case "Process":
+                Assert.assertTrue(smartBearWebOrdersPage.processButton.isDisplayed());
+                Assert.assertTrue(smartBearWebOrdersPage.processButton.isEnabled());
+                Assert.assertEquals(buttonText, smartBearWebOrdersPage.processButton.getText());
+                smartBearWebOrdersPage.processButton.click();
+                break;
+
             default:
                 throw new NotFoundException("The button text is not defined properly in the feature file!!!");
         }
@@ -106,6 +113,31 @@ public class SmartBearSteps {
     }
 
 
+    @When("user clicks on {string} menu item")
+    public void userClicksOnMenuItem(String arg0) {
+    }
 
+    @And("user selects {string} as product")
+    public void userSelectsAsProduct(String arg0) {
+    }
 
+    @And("user enters {int} as quantity")
+    public void userEntersAsQuantity(int arg0) {
+    }
+
+    @And("user enters all address information")
+    public void userEntersAllAddressInformation() {
+    }
+
+    @And("user enters all payment information")
+    public void userEntersAllPaymentInformation() {
+    }
+
+    @Then("user should see their order displayed in the {string} table")
+    public void userShouldSeeTheirOrderDisplayedInTheTable(String arg0) {
+    }
+
+    @And("validate all information entered displayed correct with the order")
+    public void validateAllInformationEnteredDisplayedCorrectWithTheOrder() {
+    }
 }

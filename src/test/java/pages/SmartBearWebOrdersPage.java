@@ -24,8 +24,8 @@ public class SmartBearWebOrdersPage {
     @FindBy(id = "ctl00_MainContent_btnUncheckAll")
     public WebElement uncheckAllBoxes;
 
-
-
+    @FindBy (id = "ctl00_MainContent_fmwOrder_InsertButton")
+    public WebElement processButton;
 
 
 
