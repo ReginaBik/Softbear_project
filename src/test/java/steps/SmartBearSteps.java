@@ -92,11 +92,21 @@ public class SmartBearSteps {
                 smartBearWebOrdersPage.processButton.click();
                 break;
 
-            default:
-                throw new NotFoundException("The button text is not defined properly in the feature file!!!");
+            case "Delete Selected":
+                Assert.assertTrue(smartBearWebOrdersPage.deleteButton.isDisplayed());
+                Assert.assertTrue(smartBearWebOrdersPage.deleteButton.isEnabled());
+                Assert.assertEquals(buttonText, smartBearWebOrdersPage.deleteButton.getText());
+                smartBearWebOrdersPage.deleteButton.click();
+                break;
+
+
+        default:
+
+        throw new NotFoundException("The button text is not defined properly in the feature file!!!");
+    }
         }
 
-    }
+
 
 
     @Then("all rows should be checked")
@@ -170,10 +180,12 @@ public class SmartBearSteps {
     }
 
     @Then("validate all orders are deleted from the {string}")
-    public void validateAllOrdersAreDeletedFromThe(String arg0) {
+    public void validateAllOrdersAreDeletedFromThe(String orders) {
+        Assert.assertNotNull(orders);
     }
 
     @And("validate user sees {string} Message")
-    public void validateUserSeesMessage(String arg0) {
+    public void validateUserSeesMessage(String isEmptyMessage) {
+        Assert.assertEquals(isEmptyMessage,smartBearWebOrdersPage.emptyMessage.getText());
     }
 }

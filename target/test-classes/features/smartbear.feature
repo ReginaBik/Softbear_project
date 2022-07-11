@@ -61,3 +61,16 @@ Given user is on "http://secure.smartbearsoftware.com/samples/testcomplete12/Web
       And user clicks on "View all orders" menu item
       Then user should see their order displayed in the "List of All Orders" table
       And validate all information entered displayed correct with the order
+
+      @Regression
+      Scenario: Validate “Delete Selected” button
+
+        When user enters username as "Tester"
+        And user enters password as "test"
+        And user clicks on Login button
+        Then user should be routed to "http://secure.smartbearsoftware.com/samples/testcomplete12/weborders/"
+        When user clicks on "Check All" button
+        And user clicks on "Delete Selected" button
+        Then validate all orders are deleted from the "List of All Orders"
+        And validate user sees "List of orders is empty. In order to add new order use this link." Message
+
