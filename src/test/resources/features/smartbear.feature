@@ -61,3 +61,4 @@ Given user is on "http://secure.smartbearsoftware.com/samples/testcomplete12/Web
       And user clicks on "View all orders" menu item
       Then user should see their order displayed in the "List of All Orders" table
       And validate all information entered displayed correct with the order
+

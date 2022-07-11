@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import pages.SmartBearLoginPage;
 import pages.SmartBearWebOrdersPage;
 import utils.Driver;
+import utils.DropdownHandler;
 import utils.Waiter;
 
 public class SmartBearSteps {
@@ -114,30 +115,57 @@ public class SmartBearSteps {
 
 
     @When("user clicks on {string} menu item")
-    public void userClicksOnMenuItem(String arg0) {
+    public void userClicksOnMenuItem(String menuItem) {
+        switch (menuItem) {
+            case "Order":
+                for (int i = 0; i < smartBearWebOrdersPage.menuItems.size(); i++) {
+                    smartBearWebOrdersPage.menuItems.get(i).click();
+                }case "View all orders":
+                    smartBearWebOrdersPage.viewAllOrdersMenuItem.click();
+        }
+
     }
 
     @And("user selects {string} as product")
-    public void userSelectsAsProduct(String arg0) {
+    public void userSelectsAsProduct(String product) {
+        Waiter.pause(3);
+        DropdownHandler.selectOptionByValue(smartBearWebOrdersPage.familyAlbumProduct, product);
+
     }
 
     @And("user enters {int} as quantity")
-    public void userEntersAsQuantity(int arg0) {
+    public void userEntersAsQuantity(int quantity) {
+        smartBearWebOrdersPage.quantityInputBox.sendKeys(String.valueOf(quantity));
     }
 
     @And("user enters all address information")
     public void userEntersAllAddressInformation() {
+        smartBearWebOrdersPage.customerNameInputBox.sendKeys("Regina");
+        smartBearWebOrdersPage.StreetInputBox.sendKeys("4848 Lawrence Ave");
+        smartBearWebOrdersPage.cityInputBox.sendKeys("Chicago");
+        smartBearWebOrdersPage.StateInputBox.sendKeys("IL");
+        smartBearWebOrdersPage.zipInputBox.sendKeys("60625");
     }
 
     @And("user enters all payment information")
     public void userEntersAllPaymentInformation() {
+        smartBearWebOrdersPage.visaRadioButton.click();
+        smartBearWebOrdersPage.cardNrInputBox.sendKeys("1234554321");
+        smartBearWebOrdersPage.expireDateInputBox.sendKeys("04/26");
+        smartBearWebOrdersPage.processBox.click();
     }
 
     @Then("user should see their order displayed in the {string} table")
-    public void userShouldSeeTheirOrderDisplayedInTheTable(String arg0) {
+    public void userShouldSeeTheirOrderDisplayedInTheTable(String orderList) {
+            for (int i = 1; i < smartBearWebOrdersPage.myOrderFirstRow.size()-1; i++) {
+                Assert.assertTrue(smartBearWebOrdersPage.myOrderFirstRow.get(i).isDisplayed());
+            }
     }
 
     @And("validate all information entered displayed correct with the order")
-    public void validateAllInformationEnteredDisplayedCorrectWithTheOrder() {
+    public void validate_all_information_entered_displayed_correct_with_the_order(DataTable dataTable) {
+        for (int i = 1; i <12; i++) {
+            Assert.assertEquals(dataTable.asList().get(i), smartBearWebOrdersPage.myOrderFirstRow.get(i).getText());
+        }
     }
 }
